@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="zh-Hant" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="TEENet — 中小企業 AI 職能顧問。把 AI 納入公司的治理之內。">
+<title>TEENet — 中小企業 AI 職能顧問</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Source+Sans+3:wght@400;500;600&display=swap">
+<meta property="og:title" content="TEENet — 中小企業 AI 職能顧問">
+<meta property="og:description" content="把 AI 納入公司的治理之內。讓 AI 成為企業可以擁有、管理並延續的能力。">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --paper:#F5F7F6;
+    --paper-alt:#EAEEEC;
+    --ink:#16262B;
+    --ink-2:#0F1C20;
+    --text:#1B2530;
+    --text-soft:#4B5963;
+    --text-on-ink:#EEF2F1;
+    --text-on-ink-soft:#A9B6BE;
+    --accent:#1F6F5F;
+    --accent-on-ink:#7BC9B4;
+    --rule:#CDD5D2;
+    --rule-on-ink:#2B3D42;
+    --sketch:#1F6F5F;
+    --header-bg:rgba(245,247,246,.88);
+    --btn-text:#fff;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#101A1E;
+      --paper-alt:#0B1417;
+      --ink:#1B2E33;
+      --ink-2:#0A1215;
+      --text:#E6ECEA;
+      --text-soft:#9FADB6;
+      --text-on-ink:#EEF2F1;
+      --text-on-ink-soft:#A9B6BE;
+      --accent:#7BC9B4;
+      --accent-on-ink:#7BC9B4;
+      --rule:#26383D;
+      --rule-on-ink:#30454B;
+      --sketch:#7BC9B4;
+      --header-bg:rgba(16,26,30,.88);
+      --btn-text:#0A1215;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#101A1E;
+    --paper-alt:#0B1417;
+    --ink:#1B2E33;
+    --ink-2:#0A1215;
+    --text:#E6ECEA;
+    --text-soft:#9FADB6;
+    --text-on-ink:#EEF2F1;
+    --text-on-ink-soft:#A9B6BE;
+    --accent:#7BC9B4;
+    --accent-on-ink:#7BC9B4;
+    --rule:#26383D;
+    --rule-on-ink:#30454B;
+    --sketch:#7BC9B4;
+    --header-bg:rgba(16,26,30,.88);
+    --btn-text:#0A1215;
+    color-scheme:dark;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text);
+    font-family:"Source Sans 3","PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,.display{
+    font-family:"Source Serif 4","Songti TC","PingFang TC","Noto Serif TC",Georgia,serif;
+    font-weight:600;
+    letter-spacing:-.005em;
+    text-wrap:balance;
+    margin:0;
+  }
+  h1{font-size:clamp(2rem,4.4vw,3.3rem);line-height:1.18}
+  h2{font-size:clamp(1.55rem,3vw,2.3rem);line-height:1.25}
+  h3{font-family:inherit;font-size:1.12rem;font-weight:700;margin:0 0 .35rem;line-height:1.4}
+  p{margin:0}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:.15em}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+  /* language switching */
+  .en{display:none}
+  html[data-lang="en"] .en{display:revert}
+  html[data-lang="en"] .zh{display:none}
+  html[data-lang="en"] body{font-size:17.5px}
+
+  .wrap{width:min(1120px,calc(100% - 2*clamp(20px,5vw,64px)));margin-inline:auto}
+  .eyebrow{
+    font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:1.1rem;
+  }
+  html[data-lang="zh"] .eyebrow{letter-spacing:.32em;text-transform:none;font-size:.86rem}
+  .prose{max-width:66ch}
+  .section-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:1.5rem clamp(2rem,5vw,4.5rem);align-items:end}
+  .section-head .lede{max-width:52ch}
+  @media (max-width:860px){.section-head{grid-template-columns:1fr}}
+  .lede{font-size:1.18rem;line-height:1.7;color:var(--text-soft)}
+
+  /* header */
+  .site-header{
+    position:sticky;top:0;z-index:10;
+    background:var(--header-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--rule);
+  }
+  .site-header .wrap{display:flex;align-items:center;gap:2rem;min-height:66px}
+  .brand{font-family:"Source Serif 4","Songti TC","PingFang TC",serif;font-weight:600;font-size:1.3rem;letter-spacing:.02em;color:var(--text)}
+  .brand:hover{text-decoration:none}
+  .nav{display:flex;gap:1.6rem;margin-left:auto}
+  .nav a{color:var(--text-soft);font-weight:500;font-size:.97rem}
+  .nav a:hover{color:var(--text);text-decoration:none}
+  .lang{display:flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden;font-size:.8rem;font-weight:600;letter-spacing:.06em}
+  .lang button{
+    appearance:none;border:0;background:transparent;color:var(--text-soft);
+    padding:.28rem .7rem;cursor:pointer;font:inherit;
+  }
+  .lang button[aria-pressed="true"]{background:var(--text);color:var(--paper)}
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;
+    background:var(--accent);color:var(--btn-text);font-weight:600;
+    padding:.72rem 1.25rem;border-radius:4px;white-space:nowrap;
+    transition:transform .15s ease,filter .15s ease;
+  }
+  .btn:hover{text-decoration:none;filter:brightness(1.06);transform:translateY(-1px)}
+  .btn.on-ink{background:var(--accent-on-ink);color:var(--ink-2)}
+  .btn.small{padding:.5rem .95rem;font-size:.92rem}
+  @media (max-width:760px){
+    .site-header .wrap{flex-wrap:wrap;gap:.35rem .8rem;padding:.6rem 0;min-height:0}
+    .brand{margin-right:auto}
+    .nav{order:5;flex-basis:100%;margin-left:0;gap:1.25rem;overflow-x:auto;scrollbar-width:none;font-size:.92rem;padding:.15rem 0 .25rem}
+    .nav::-webkit-scrollbar{display:none}
+    .nav a{white-space:nowrap}
+    .site-header .btn{margin-left:0}
+  }
+
+  /* bands */
+  section{padding:clamp(4rem,8vw,7.5rem) 0}
+  main > section + section{border-top:1px solid var(--rule)}
+  .band-ink + .band-ink{border-top-color:var(--rule-on-ink)}
+  .band-alt{background:var(--paper-alt)}
+  .band-ink{background:var(--ink);color:var(--text-on-ink)}
+  .band-ink .eyebrow{color:var(--accent-on-ink)}
+  .band-ink .lede,.band-ink .soft{color:var(--text-on-ink-soft)}
+  .band-ink a:not(.btn){color:var(--accent-on-ink)}
+  .band-ink-2{background:var(--ink-2)}
+
+  /* hero */
+  .hero{padding-top:clamp(3.5rem,7vw,6.5rem)}
+  .hero .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(2rem,6vw,5rem);align-items:center}
+  .hero .lede{margin:1.4rem 0 2.2rem;max-width:34ch}
+  .sketch{width:100%;height:auto;display:block}
+  .sketch text{font-family:"Source Sans 3","PingFang TC","Microsoft JhengHei",sans-serif;font-size:11.5px;fill:var(--text-soft);letter-spacing:.04em}
+  .sketch .frame{fill:none;stroke:var(--sketch);stroke-width:1.4;stroke-linejoin:round;stroke-linecap:round}
+  .sketch .line{fill:none;stroke:var(--sketch);stroke-width:1.2;stroke-linecap:round;opacity:.85}
+  .sketch .dot{fill:var(--sketch)}
+  .sketch .wash{fill:var(--sketch);opacity:.07}
+  @media (prefers-reduced-motion:no-preference){
+    .sketch .frame,.sketch .line{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 1.5s ease-out forwards;animation-delay:var(--d,0s)}
+    @keyframes draw{to{stroke-dashoffset:0}}
+  }
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr}
+    .sketch{max-width:460px}
+  }
+
+  /* problem */
+  .reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.2rem clamp(1.5rem,3vw,3rem);margin-top:3rem}
+  .reasons > div{border-top:2px solid var(--accent);padding-top:1.1rem}
+  .closing{margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--rule);max-width:66ch;font-size:1.08rem}
+  .closing .display{font-size:1.25rem;font-weight:600}
+  @media (max-width:860px){.reasons{grid-template-columns:1fr}}
+
+  /* services */
+  .services{--gap:clamp(1.5rem,3vw,3rem);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 var(--gap);margin-top:3.5rem}
+  .services > div{position:relative;padding-top:2rem}
+  .services > div::before{content:"";position:absolute;left:0;right:calc(-1*var(--gap));top:0;height:1px;background:var(--rule)}
+  .services > div:last-child::before{right:0}
+  .services > div::after{content:"";position:absolute;left:0;top:-4px;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+  .services .num{font-family:"Source Serif 4","Songti TC","PingFang TC",serif;font-size:2.4rem;line-height:1;color:var(--accent);margin-bottom:1.1rem;font-variant-numeric:tabular-nums}
+  .services h3{font-family:"Source Serif 4","Songti TC","PingFang TC",serif;font-size:1.45rem;font-weight:600;margin-bottom:.7rem}
+  .services .ops h3::after{content:"";display:block;width:2.2rem;height:3px;background:var(--accent);margin-top:.7rem}
+  @media (max-width:860px){
+    .services{grid-template-columns:1fr;gap:0}
+    .services > div{padding:0 0 2.2rem 1.8rem;border-left:1px solid var(--rule)}
+    .services > div:last-child{padding-bottom:0}
+    .services > div::before{display:none}
+    .services > div::after{top:.35rem;left:-5px}
+    .services .num{margin-top:-.3rem}
+  }
+
+  /* principles */
+  .principles-intro{max-width:66ch}
+  .principles-intro p + p{margin-top:1.1rem}
+  .principles{margin-top:3.5rem;border-top:1px solid var(--rule-on-ink)}
+  .principles > div{display:grid;grid-template-columns:4.5rem minmax(0,1fr);gap:1.5rem clamp(1.5rem,3vw,3rem);padding:2rem 0;border-bottom:1px solid var(--rule-on-ink)}
+  .principles .glyph{margin:0}
+  .principles .body{max-width:62ch}
+  .principles h3{color:var(--text-on-ink);font-size:1.25rem}
+  .principles p{color:var(--text-on-ink-soft)}
+  @media (max-width:860px){
+    .principles > div{grid-template-columns:1fr;gap:1rem}
+  }
+
+  /* about */
+  .about .prose{font-size:1.18rem;line-height:1.7}
+
+  /* contact */
+  .contact .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:2.5rem;align-items:end}
+  .contact .lede{margin-top:1rem;max-width:40ch}
+  .contact-actions{display:flex;flex-direction:column;align-items:flex-start;gap:1rem}
+  .contact-actions .mail{font-family:"Source Sans 3",monospace;font-size:1rem;color:var(--text-on-ink-soft)}
+  @media (max-width:860px){.contact .wrap{grid-template-columns:1fr}}
+
+  /* footer */
+  .site-footer{padding:1.6rem 0 2rem;font-size:.9rem;color:var(--text-soft);border-top:1px solid var(--rule)}
+  .site-footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+  /* glyphs */
+  .glyph{width:36px;height:36px;display:block;margin-bottom:.9rem}
+  .glyph *{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  .band-ink .glyph *{stroke:var(--accent-on-ink)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">TEENet</a>
+    <nav class="nav" aria-label="主導航">
+      <a href="#why"><span class="zh">為什麼</span><span class="en">Why</span></a>
+      <a href="#services"><span class="zh">服務</span><span class="en">Services</span></a>
+      <a href="#principles"><span class="zh">立場</span><span class="en">Principles</span></a>
+      <a href="#about"><span class="zh">關於</span><span class="en">About</span></a>
+      <a href="#contact"><span class="zh">聯絡</span><span class="en">Contact</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="zh" aria-pressed="true">繁中</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn small" href="mailto:peter.zhou@teenet.io?subject=%E9%A0%90%E7%B4%84%E6%9C%83%E9%9D%A2"><span class="zh">預約會面</span><span class="en">Book a meeting</span></a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow"><span class="zh">中小企業 AI 職能顧問</span><span class="en">AI function advisory for SMEs</span></p>
+        <h1>
+          <span class="zh">把 AI 納入公司的治理之內。</span>
+          <span class="en">Bring AI within the company's governance.</span>
+        </h1>
+        <p class="lede">
+          <span class="zh">讓 AI 成為企業可以擁有、管理並延續的能力，而非一次性的採購。</span>
+          <span class="en">Make AI a capability the company can own, manage and sustain — not a one-off purchase.</span>
+        </p>
+        <a class="btn" href="mailto:peter.zhou@teenet.io?subject=%E9%A0%90%E7%B4%84%E6%9C%83%E9%9D%A2"><span class="zh">預約會面</span><span class="en">Book a meeting</span></a>
+      </div>
+
+      <svg class="sketch" viewBox="0 0 420 320" role="img" aria-labelledby="sketch-title">
+        <title id="sketch-title">公司 AI 職能的五個面向：規矩、人、環境、流程、家底</title>
+        <!-- 規矩 · Rules -->
+        <rect class="wash" x="20" y="18" width="380" height="64" rx="3"/>
+        <rect class="frame" x="20" y="18" width="380" height="64" rx="3" style="--d:0s"/>
+        <path class="line" d="M42 40h150M42 52h110M42 64h130" style="--d:.15s"/>
+        <text x="386" y="44" text-anchor="end" class="zh">規矩</text>
+        <text x="386" y="44" text-anchor="end" class="en">Rules</text>
+        <!-- 人 · People -->
+        <rect class="frame" x="20" y="102" width="182" height="100" rx="3" style="--d:.1s"/>
+        <path class="line" d="M52 168c0-14 10-22 22-22s22 8 22 22M74 138a11 11 0 1 0 .01 0M110 168c0-14 10-22 22-22s22 8 22 22M132 138a11 11 0 1 0 .01 0" style="--d:.3s"/>
+        <text x="36" y="126" class="zh">人</text>
+        <text x="36" y="126" class="en">People</text>
+        <!-- 環境 · Environment -->
+        <rect class="frame" x="218" y="102" width="182" height="100" rx="3" style="--d:.2s"/>
+        <path class="line" d="M244 136h130v50H244zM258 148h40M258 160h60M258 172h28" style="--d:.4s"/>
+        <path class="line" d="M352 152v-8a8 8 0 0 1 16 0v8M348 152h24v18h-24z" style="--d:.5s"/>
+        <text x="234" y="126" class="zh">環境</text>
+        <text x="234" y="126" class="en">Environment</text>
+        <!-- 流程 · Process -->
+        <rect class="frame" x="20" y="222" width="182" height="80" rx="3" style="--d:.3s"/>
+        <path class="line" d="M40 270h30M78 270h30M116 270h30M154 270h24M70 270l-6-5M70 270l-6 5M108 270l-6-5M108 270l-6 5M146 270l-6-5M146 270l-6 5" style="--d:.55s"/>
+        <circle class="dot" cx="40" cy="270" r="3.5"/>
+        <circle class="dot" cx="178" cy="270" r="3.5"/>
+        <text x="36" y="246" class="zh">流程</text>
+        <text x="36" y="246" class="en">Process</text>
+        <!-- 家底 · Assets -->
+        <rect class="frame" x="218" y="222" width="182" height="80" rx="3" style="--d:.4s"/>
+        <path class="line" d="M262 268l46-14 46 14-46 14zM262 278l46 14 46-14M262 258l46-14 46 14" style="--d:.65s"/>
+        <text x="234" y="246" class="zh">家底</text>
+        <text x="234" y="246" class="en">Assets</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="band-alt" id="why">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow"><span class="zh">為什麼需要治理</span><span class="en">Why governance</span></p>
+          <h2>
+            <span class="zh">公司的 AI，需要有人治理。</span>
+            <span class="en">A company's AI needs someone to govern it.</span>
+          </h2>
+        </div>
+        <p class="lede">
+        <span class="zh">多數公司的 AI 是由員工自行採用、逐步進入日常工作的。這種方式起步容易，卻缺少三樣東西：有人負責、有規則可循、有積累可留。</span>
+        <span class="en">In most companies, AI arrived through employees adopting it on their own and folding it into everyday work. That is an easy way to start, but it leaves three things missing: someone responsible, rules to follow, and something that accumulates.</span>
+        </p>
+      </div>
+
+      <div class="reasons">
+        <div>
+          <svg class="glyph" viewBox="0 0 36 36" aria-hidden="true"><path d="M8 28h5v-6H8zM15.5 28h5v-6h-5zM23 28h5v-6h-5z"/><path d="M6 12h24" stroke-dasharray="3 3"/><path d="M18 6v3"/></svg>
+          <h3><span class="zh">投入難以產生回報</span><span class="en">Investment struggles to pay back</span></h3>
+          <p>
+            <span class="zh"><a href="https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf" target="_blank" rel="noopener">麻省理工學院 2025 年的調研</a>顯示，約 95% 的企業生成式 AI 試點未能產生可衡量的損益影響。差別不在於買了什麼工具，而在於是否有人負責把工具落到工作中。沒有治理，投入停留在採購。</span>
+            <span class="en"><a href="https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf" target="_blank" rel="noopener">MIT research in 2025</a> found that roughly 95% of enterprise generative-AI pilots produced no measurable impact on profit and loss. The difference lies not in which tools were bought, but in whether anyone was responsible for landing them in real work. Without governance, investment stops at procurement.</span>
+          </p>
+        </div>
+        <div>
+          <svg class="glyph" viewBox="0 0 36 36" aria-hidden="true"><path d="M8 6h13l4 4v20H8z"/><path d="M12 15h9M12 20h6"/><path d="M28 10v20" stroke-dasharray="2.5 2.5"/><path d="M21 25h11M29 22l3 3-3 3"/></svg>
+          <h3><span class="zh">資料風險無人把關</span><span class="en">Data risk goes unattended</span></h3>
+          <p>
+            <span class="zh">哪些資料可以交給 AI 處理，多數公司沒有成文的規則，全憑員工各自判斷。公司的資料邊界因此取決於個人的分寸；而在監管與客戶眼中，責任始終歸於公司。</span>
+            <span class="en">Which data may be handed to an AI tool is, in most companies, not written down; employees judge for themselves. The company's data boundary therefore rests on individual discretion — while in the eyes of regulators and clients, the responsibility remains the company's.</span>
+          </p>
+        </div>
+        <div>
+          <svg class="glyph" viewBox="0 0 36 36" aria-hidden="true"><path d="M8 25h18M8 30h18"/><path d="M8 25l2-3h14l2 3M8 30l2-3h14l2 3" opacity=".5"/><path d="M14 15h16" stroke-dasharray="3 3"/><path d="M26 11l4 4-4 4"/></svg>
+          <h3><span class="zh">能力無法持續積累</span><span class="en">Capability fails to accumulate</span></h3>
+          <p>
+            <span class="zh">用得好的方法留在少數員工的習慣與個人帳號裡，公司看不見、留不住；人員流動，能力隨之離開。沒有治理，公司的 AI 能力始終停留在個人層面，不會隨時間累積。</span>
+            <span class="en">The methods that work stay in the habits and personal accounts of a few employees; the company can neither see them nor keep them, and when people move on, the capability leaves with them. Without governance, a company's AI capability stays at the level of individuals and never compounds over time.</span>
+          </p>
+        </div>
+      </div>
+
+      <p class="closing display">
+        <span class="zh">治理不是限制使用，而是讓投入有回報、風險有邊界、能力有積累。這需要一個持續運作的職能，而非一次採購。</span>
+        <span class="en">Governance is not about restricting use. It is what makes investment pay back, keeps risk within bounds, and lets capability accumulate — and it takes a function that runs continuously, not a one-off purchase.</span>
+      </p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <p class="eyebrow"><span class="zh">服務領域</span><span class="en">Services</span></p>
+      <h2>
+        <span class="zh">三個階段，建起一個持續運作的職能。</span>
+        <span class="en">Three stages. One function that keeps running.</span>
+      </h2>
+      <div class="services">
+        <div>
+          <p class="num" aria-hidden="true">01</p>
+          <h3><span class="zh">諮詢</span><span class="en">Advisory</span></h3>
+          <p>
+            <span class="zh">評估企業目前的 AI 使用狀況與風險，建立使用制度與資料邊界，規劃落地的優先次序。</span>
+            <span class="en">Assess how the company currently uses AI and where the risks lie; establish usage policy and data boundaries; set priorities for implementation.</span>
+          </p>
+        </div>
+        <div>
+          <p class="num" aria-hidden="true">02</p>
+          <h3><span class="zh">建設</span><span class="en">Build</span></h3>
+          <p>
+            <span class="zh">搭建符合合規要求的 AI 工作環境，將有效的用法沉澱為公司自己的工具，並完成團隊導入。</span>
+            <span class="en">Set up a compliant AI working environment, turn the practices that work into the company's own tools, and bring the team on board.</span>
+          </p>
+        </div>
+        <div class="ops">
+          <p class="num" aria-hidden="true">03</p>
+          <h3><span class="zh">運營</span><span class="en">Operations</span></h3>
+          <p>
+            <span class="zh">以固定節奏持續運行企業的 AI 職能：新用法的沉澱、資產與知識的維護、月度與季度使用報告、行業動向跟蹤。</span>
+            <span class="en">Run the company's AI function on a fixed cadence: capturing new practice, maintaining assets and knowledge, monthly and quarterly usage reports, and tracking developments in the field.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-ink" id="principles">
+    <div class="wrap">
+      <p class="eyebrow"><span class="zh">我們的立場</span><span class="en">Our principles</span></p>
+      <h2>
+        <span class="zh">持續經營，可隨時移交。</span>
+        <span class="en">Long-term stewardship. Transferable at any time.</span>
+      </h2>
+      <div class="principles-intro" style="margin-top:1.4rem">
+        <p class="soft">
+          <span class="zh">AI 相關的制度、工具與知識處於持續變化之中：模型更迭、用法演進、人員流動，任何一次性的交付都會在數月內失效。因此我們不以項目交付作為服務的終點，而是以長期經營的方式承擔企業的 AI 職能——承擔的是職能，決策始終在客戶。</span>
+          <span class="en">AI-related policy, tools and knowledge are in constant motion: models change, practices evolve, people move on, and any one-off deliverable is out of date within months. We therefore do not treat project delivery as the end of the engagement; we take on the company's AI function as a matter of ongoing stewardship — the function is ours to carry; the decisions remain the client's.</span>
+        </p>
+        <p class="soft">
+          <span class="zh">長期合作必須建立在客戶隨時可以離開的基礎上。我們據此確立三項原則：</span>
+          <span class="en">A long-term engagement must rest on the client's freedom to leave. Three principles follow:</span>
+        </p>
+      </div>
+      <div class="principles">
+        <div>
+          <svg class="glyph" viewBox="0 0 36 36" aria-hidden="true"><path d="M7 8h22v20H7z"/><path d="M11 14h9M11 19h6"/><circle cx="24" cy="22" r="3.5"/><path d="M22.5 25.5l-1 4 2.5-1.5 2.5 1.5-1-4"/></svg>
+          <div class="body">
+          <h3><span class="zh">成果歸屬客戶</span><span class="en">Client ownership</span></h3>
+          <p>
+            <span class="zh">合作期間形成的制度文件、工具與知識庫，均以客戶名義建立並登記，客戶對其擁有完整的權屬與使用權。</span>
+            <span class="en">Policy documents, tools and knowledge bases created during the engagement are established and registered in the client's name, with full ownership and rights of use resting with the client.</span>
+          </p>
+          </div>
+        </div>
+        <div>
+          <svg class="glyph" viewBox="0 0 36 36" aria-hidden="true"><path d="M6 14h24v14H6z"/><path d="M13 14v-4h10v4"/><path d="M6 20h24"/><path d="M15 20v2h6v-2"/></svg>
+          <div class="body">
+          <h3><span class="zh">資產可攜</span><span class="en">Portability</span></h3>
+          <p>
+            <span class="zh">所有資產以結構化、可導出的形式建立與維護，並保持供應商中立，不與特定模型或平台綁定。客戶可隨時將其移交至內部團隊或其他服務方。</span>
+            <span class="en">All assets are built and maintained in structured, exportable form and remain vendor-neutral, tied to no particular model or platform. They can be transferred to an in-house team or another provider at any time.</span>
+          </p>
+          </div>
+        </div>
+        <div>
+          <svg class="glyph" viewBox="0 0 36 36" aria-hidden="true"><path d="M9 6h14v24H9z"/><path d="M19 18h1.5"/><path d="M16 18h15M28 15l3 3-3 3"/><path d="M6 30h20" opacity=".5"/></svg>
+          <div class="body">
+          <h3><span class="zh">退出安排前置</span><span class="en">Exit defined at the outset</span></h3>
+          <p>
+            <span class="zh">退出機制在合作開始時即已明確：客戶可依約定終止合作，並獲得完整的移交安排。持續合作的理由應當是價值，而非更換成本。</span>
+            <span class="en">The terms of exit are settled when the engagement begins: the client may end the engagement as agreed and receives a complete handover. The reason to continue should be value, not the cost of switching.</span>
+          </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <p class="eyebrow"><span class="zh">關於</span><span class="en">About</span></p>
+      <p class="prose display">
+        <span class="zh">TEENet 是一支專注於中小企業 AI 職能建設的顧問團隊。我們的方法與工具，來自自身與客戶工作中的真實需要。</span>
+        <span class="en">TEENet is an advisory team focused on building AI functions for small and medium-sized enterprises. Our methods and tools come from real needs — our own and our clients'.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="band-ink band-ink-2 contact" id="contact">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow"><span class="zh">聯絡</span><span class="en">Contact</span></p>
+        <h2>
+          <span class="zh">從一次會面開始。</span>
+          <span class="en">Start with a conversation.</span>
+        </h2>
+        <p class="lede">
+          <span class="zh">第一次會面只做一件事：了解貴公司目前如何使用 AI、最想解決什麼。是否合作，談過之後雙方再定。</span>
+          <span class="en">The first meeting does one thing: we learn how your company uses AI today and what you most want to solve. Whether to work together is decided afterwards, by both sides.</span>
+        </p>
+      </div>
+      <div class="contact-actions">
+        <a class="btn on-ink" href="mailto:peter.zhou@teenet.io?subject=%E9%A0%90%E7%B4%84%E6%9C%83%E9%9D%A2"><span class="zh">預約會面</span><span class="en">Book a meeting</span></a>
+        <a class="mail" href="mailto:peter.zhou@teenet.io">peter.zhou@teenet.io</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>TEENet Global Inc · © 2026</span>
+    <span><a href="mailto:peter.zhou@teenet.io">peter.zhou@teenet.io</a></span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement;
+    var buttons=document.querySelectorAll('.lang button');
+    var meta={
+      zh:{title:'TEENet — 中小企業 AI 職能顧問',desc:'TEENet — 中小企業 AI 職能顧問。把 AI 納入公司的治理之內。',nav:'主導航'},
+      en:{title:'TEENet — AI function advisory for SMEs',desc:'TEENet — AI function advisory for SMEs. Bring AI within the company\'s governance.',nav:'Main navigation'}
+    };
+    var descEl=document.querySelector('meta[name="description"]'),navEl=document.querySelector('.nav');
+    function apply(lang){
+      root.setAttribute('data-lang',lang);
+      root.setAttribute('lang',lang==='en'?'en':'zh-Hant');
+      document.title=meta[lang].title;
+      if(descEl)descEl.setAttribute('content',meta[lang].desc);
+      if(navEl)navEl.setAttribute('aria-label',meta[lang].nav);
+      buttons.forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===lang));});
+      try{localStorage.setItem('teenet-lang',lang);}catch(e){}
+    }
+    var saved=null;
+    try{saved=localStorage.getItem('teenet-lang');}catch(e){}
+    if(!saved){
+      var nav=(navigator.language||'').toLowerCase();
+      saved=nav.indexOf('zh')===0?'zh':'en';
+    }
+    apply(saved==='en'?'en':'zh');
+    buttons.forEach(function(b){b.addEventListener('click',function(){apply(b.getAttribute('data-lang'));});});
+  })();
+</script>
+</body>
+</html>
